@@ -12,7 +12,7 @@ struct Bot;
 #[async_trait]
 impl EventHandler for Bot {
     async fn message(&self, ctx: Context, msg: Message) {
-        if msg.content.contains("trash") {
+        if msg.content.to_lowercase().contains("trash") {
             if let Err(e) = msg.channel_id.say(&ctx.http, "GONK").await {
                 error!("Error sending message: {:?}", e);
             }
